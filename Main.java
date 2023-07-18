@@ -4,66 +4,17 @@
 *реализовать сортировку по возрасту с использованием индексов
 *реализовать сортировку по возрасту и полу с использованием индексов*/
 
-
-/*class User{
-  private String fullName;
-  private int age;
-  private String gender;
-  public User (String fullName, int age, String gender) {
-    this.age = age;
-    this.gender = gender;
-    this.fullName = fullName;
-  }
-public String getFullName() {
-  return fullName;
-}
-public int getAge() {
-  return age;
-}
-
-public String getGender() {
-  return gender;
-}
-
-public void displayUser() {
-  System.out.println (fullName + " " + age + " " + gender);
-}
-}*/
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
+
 public class Main{
-  private static List users = new ArrayList();
-  private static int currentIndex = 0;
-
-  class User{
-  private String fullName;
-  private int age;
-  private String gender;
-  public User (String fullName, int age, String gender) {
-    this.age = age;
-    this.gender = gender;
-    this.fullName = fullName;
-  }
-  public String getFullName() {
-  return fullName;
-  }
-  public int getAge() {
-  return age;
-  }
-
-  public String getGender() {
-  return gender;
-  }
-
-  public void displayUser() {
-  System.out.println (fullName + " " + age + " " + gender);
-  }
-  }
+  public static List users = new ArrayList<>();
+  public static int currentIndex = 0;
+  User pt;
   public static void  main (String[] args) {
     Scanner scanner = new Scanner (System.in);
 
@@ -93,7 +44,7 @@ public class Main{
       }
     }
    }
-   private static void addUser(Scanner scanner) {
+   public static void addUser(Scanner scanner) {
     System.out.println ("Введите ФИО: ");
     String fullName = scanner.nextLine();
 
@@ -109,13 +60,13 @@ public class Main{
     System.out.println("Пользователь успешно добавлен");
    }
 
-   private static void listUsers() {
-    for (User user : users) {
+   public static void listUsers() {
+    for (User user : users){
       user.displayUser();
     }
    }
 
-   private static void sortByAge() {
+    public static void sortByAge() {
     int[] indexes = new int[users.size()];
     for (int i =0; i < indexes.length; i++) {
       indexes[i] = i;
@@ -139,7 +90,7 @@ public class Main{
     users = sortedUsers;
    }
 
-   private static void sortByAgeAndGender() {
+   public static void sortByAgeAndGender() {
     int[] indexes = new int[users.size()];
     for(int i = 0; i < indexes.length; i++) {
       indexes[i] = i;
