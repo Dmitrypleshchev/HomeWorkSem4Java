@@ -4,6 +4,7 @@
 *реализовать сортировку по возрасту с использованием индексов
 *реализовать сортировку по возрасту и полу с использованием индексов*/
 
+import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -12,10 +13,13 @@ import java.util.Scanner;
 import java.io.*;
 
 
+
+
+
 class User {
-  public String fullName;
-  public Integer age;
-  public String gender;
+  private String fullName;
+  private Integer age;
+  private String gender;
   public User (String fullName, Integer age, String gender){
     this.age = age;
     this.gender = gender;
@@ -38,8 +42,9 @@ class User {
 }
 
 public class Main{
-  public static List users = new ArrayList<>();
-  public static int currentIndex = 0;
+  private  static List<User> users = new ArrayList<>();
+  private static int currentIndex = 0;
+  
   
   public static void  main (String[] args) {
     Scanner scanner = new Scanner (System.in);
@@ -71,7 +76,7 @@ public class Main{
       }
     }
    }
-   public static void addUser(Scanner scanner) {
+   private static void addUser(Scanner scanner) {
     System.out.println ("Введите ФИО: ");
     String fullName = scanner.nextLine();
 
@@ -88,13 +93,13 @@ public class Main{
    }
   
 
-   public static void listUsers() {
+   private static void listUsers() {
     for (User user : users){
       user.displayUser();
     }
    }
 
-    public static void sortByAge() {
+    private static void sortByAge() {
     int[] indexes = new int[users.size()];
     for (int i =0; i < indexes.length; i++) {
       indexes[i] = i;
@@ -118,7 +123,7 @@ public class Main{
     users = sortedUsers;
    }
 
-   public static void sortByAgeAndGender() {
+   private static void sortByAgeAndGender() {
     int[] indexes = new int[users.size()];
     for(int i = 0; i < indexes.length; i++) {
       indexes[i] = i;

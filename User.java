@@ -1,5 +1,5 @@
 
-public class User {
+/*public class User {
   public String fullName;
   public Integer age;
   public String gender;
@@ -22,5 +22,5 @@ public class User {
   public void displayUser(){
   System.out.println (fullName + " " + age + " " + gender);
   }
-}
+}*/
 
