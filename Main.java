@@ -9,12 +9,38 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
+import java.io.*;
 
+
+class User {
+  public String fullName;
+  public Integer age;
+  public String gender;
+  public User (String fullName, Integer age, String gender){
+    this.age = age;
+    this.gender = gender;
+    this.fullName = fullName;
+  }
+  public String getFullName(){
+  return fullName;
+  }
+  public  Integer getAge(){
+  return age;
+  }
+
+  public String getGender(){
+  return gender;
+  }
+
+  public void displayUser(){
+  System.out.println (fullName + " " + age + " " + gender);
+  }
+}
 
 public class Main{
   public static List users = new ArrayList<>();
   public static int currentIndex = 0;
-  User pt;
+  
   public static void  main (String[] args) {
     Scanner scanner = new Scanner (System.in);
 
@@ -25,6 +51,7 @@ public class Main{
       if (command.equals("add")){
         addUser(scanner);
       }
+    
       else if (command.equals("list")) {
         listUsers();
       }
@@ -59,6 +86,7 @@ public class Main{
     users.add(user);
     System.out.println("Пользователь успешно добавлен");
    }
+  
 
    public static void listUsers() {
     for (User user : users){
@@ -74,7 +102,7 @@ public class Main{
     
     for (int i = 0; i < users.size() -1; i ++) {
       for (int j =0; j < users.size() - i - 1; j++) {
-        if(users.get(indexes[j]).getAge() > users.get(indexes[j+1]).getAge()) {
+        if(((User) users.get(indexes[j])).getAge() > ((User) users.get(indexes[j+1])).getAge()) {
           int temp = indexes[j];
           indexes[j] = indexes[j+1];
           indexes[j+1] = temp; 
@@ -98,8 +126,8 @@ public class Main{
 
     for (int i = 0; i < users.size() -1; i ++) {
       for (int j =0; j < users.size() - i - 1; j++) {
-        User current = users.get(indexes[j]);
-        User next = users.get(indexes[j+1]);
+        User current = (User) users.get(indexes[j]);
+        User next = (User) users.get(indexes[j+1]);
 
         if (current.getAge() > next.getAge() || (current.getAge() == next.getAge() && current.getGender().compareTo(next.getGender()) > 0)) {
           int temp = indexes[j];
@@ -115,4 +143,4 @@ public class Main{
     }
     users = sortedUsers;
    }
-}
+  }
