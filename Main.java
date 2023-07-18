@@ -93,6 +93,24 @@ public void displayUser() {
       }
     }
    }
+   private static void addUser(Scanner scanner) {
+    System.out.println ("Введите ФИО: ");
+    String fullName = scanner.nextLine();
 
+    System.out.println ("Введите возраст: ");
+    int age = scanner.nextInt();
+    scanner.nextLine();
+
+    System.out.println("Введите пол (М или Ж): ");
+    String gender = scanner.nextLine().toLowerCase();
+
+    User user = new User (fullName, age, gender);
+    users.add(user);
+    System.out.println("Пользователь успешно добавлен");
+   }
+
+   private static void listUsers() {
+    
+   }
 
 }
