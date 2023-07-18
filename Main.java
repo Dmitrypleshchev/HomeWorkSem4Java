@@ -49,21 +49,21 @@ public class Main{
     this.gender = gender;
     this.fullName = fullName;
   }
-public String getFullName() {
+  public String getFullName() {
   return fullName;
-}
-public int getAge() {
+  }
+  public int getAge() {
   return age;
-}
+  }
 
-public String getGender() {
+  public String getGender() {
   return gender;
-}
+  }
 
-public void displayUser() {
+  public void displayUser() {
   System.out.println (fullName + " " + age + " " + gender);
-}
-}
+  }
+  }
   public static void  main (String[] args) {
     Scanner scanner = new Scanner (System.in);
 
@@ -104,13 +104,64 @@ public void displayUser() {
     System.out.println("Введите пол (М или Ж): ");
     String gender = scanner.nextLine().toLowerCase();
 
-    User user = new User (fullName, age, gender);
+    User user = new User(fullName, age, gender);
     users.add(user);
     System.out.println("Пользователь успешно добавлен");
    }
 
    private static void listUsers() {
-    
+    for (User user : users) {
+      user.displayUser();
+    }
    }
 
+   private static void sortByAge() {
+    int[] indexes = new int[users.size()];
+    for (int i =0; i < indexes.length; i++) {
+      indexes[i] = i;
+    }
+    
+    for (int i = 0; i < users.size() -1; i ++) {
+      for (int j =0; j < users.size() - i - 1; j++) {
+        if(users.get(indexes[j]).getAge() > users.get(indexes[j+1]).getAge()) {
+          int temp = indexes[j];
+          indexes[j] = indexes[j+1];
+          indexes[j+1] = temp; 
+
+        }
+      } 
+    }
+
+    List sortedUsers = new ArrayList();
+    for (int index : indexes) {
+      sortedUsers.add(users.get(index));
+    }
+    users = sortedUsers;
+   }
+
+   private static void sortByAgeAndGender() {
+    int[] indexes = new int[users.size()];
+    for(int i = 0; i < indexes.length; i++) {
+      indexes[i] = i;
+    }
+
+    for (int i = 0; i < users.size() -1; i ++) {
+      for (int j =0; j < users.size() - i - 1; j++) {
+        User current = users.get(indexes[j]);
+        User next = users.get(indexes[j+1]);
+
+        if (current.getAge() > next.getAge() || (current.getAge() == next.getAge() && current.getGender().compareTo(next.getGender()) > 0)) {
+          int temp = indexes[j];
+          indexes[j] = indexes[j+1];
+          indexes[j+1] = temp;
+        }
+      }
+    }
+
+    List sortedUsers = new ArrayList();
+    for (int index : indexes) {
+      sortedUsers.add(users.get(index));
+    }
+    users = sortedUsers;
+   }
 }
